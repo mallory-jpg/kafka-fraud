@@ -4,8 +4,6 @@ import json
 import os
 
 
-
-
 def is_suspicious(transaction: dict) -> bool:
     return transaction["amount"] >= 900
 
@@ -24,6 +22,7 @@ if __name__ == "__main__":
     )
     producer = KafkaProducer(
         bootstrap_servers=KAFKA_BROKER_URL,
+        api_version=(1, 3, 5),
         value_serializer=lambda value: json.dumps(value).encode()
     )
     for message in consumer:
