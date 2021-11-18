@@ -41,7 +41,10 @@ After building the producer, it must be included in the `docker-compose.yml` con
 
 <img width="376" alt="Add generator app to docker-compose config" src="https://user-images.githubusercontent.com/65197541/142468194-88eca51d-1b65-45bc-ba67-ad81ba78e3cb.png">
 
-Test the generator's producer by running `docker-compose up` in the project's root directory.
+### Testing
+1. Run the zookeeper: `bin/zookeeper-server-start.sh config/zookeeper.properties`
+2. Run the broker service: `bin/kafka-server-start.sh config/server.properties`
+3. Test the generator's producer by running `docker-compose up` in the project's root directory.
 
 ## Detector 
 The `detector` directory contains files for the fraud detector.
