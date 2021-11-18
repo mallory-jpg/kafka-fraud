@@ -18,7 +18,7 @@ if __name__ == "__main__":
     consumer = KafkaConsumer(
         TRANSACTIONS_TOPIC,
         bootstrap_servers=KAFKA_BROKER_URL,
-        value_deserializer=lambda value: json.loads(value),
+        value_deserializer=lambda value: json.loads(value), # TODO https://github.com/mallory-jpg/kafka-fraud/issues/1 'no brokers available' -- api version? 
     )
     producer = KafkaProducer(
         bootstrap_servers=KAFKA_BROKER_URL,

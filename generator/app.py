@@ -1,8 +1,8 @@
-from kafka import KafkaProducer
 from time import sleep
 import os
 from transactions import create_random_transaction
 import json
+from kafka import KafkaConsumer, KafkaProducer #TODO no module found 'kafka'
 
 KAFKA_BROKER_URL = os.environ.get("KAFKA_BROKER_URL")
 TRANSACTIONS_TOPIC = os.environ.get("TRANSACTIONS_TOPIC")
