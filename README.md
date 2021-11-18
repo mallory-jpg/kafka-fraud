@@ -1,5 +1,16 @@
 # Fraud Detector
 
+### To Run
+1. Build & run the Kafka container: `docker-compose -f docker-compose.kafka.yml build && docker-compose -f docker-compose.kafka.yml up`
+2. Build & run the application container that contains the generator & detector: `docker-compose build && docker-compose up`
+
+Test the consumer using some Kafka built-ins: 
+```
+docker-compose -f docker-compose.kafka.yml exec broker kafka-console-consumer --bootstrap-server localhost:9092 --topic streaming.transactions.fraud
+docker-compose -f docker-compose.kafka.yml exec broker kafka-console-consumer --bootstrap-server localhost:9092 --topic streaming.transactions.legit
+
+```
+
 ## Project Setup
 Project directory looks like this:
 ```
@@ -28,10 +39,7 @@ After building the producer, it must be included in the `docker-compose.yml` con
 
 <img width="376" alt="Add generator app to docker-compose config" src="https://user-images.githubusercontent.com/65197541/142468194-88eca51d-1b65-45bc-ba67-ad81ba78e3cb.png">
 
-### Test
-1. Start network: ``
-2. Spin up local Kafka cluster: ``
-3. Start generator's producer: `docker-compose up`
+Test the generator's producer by running `docker-compose up` in the project main directory.
 
 ## Detector 
 The `detector` directory contains files for the fraud detector.
