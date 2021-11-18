@@ -13,16 +13,18 @@ TRANSACTIONS_TOPIC = os.environ.get("TRANSACTIONS_TOPIC")
 
 LEGIT_TOPIC = os.environ.get("LEGIT_TOPIC")
 FRAUD_TOPIC = os.environ.get("FRAUD_TOPIC")
+KAFKA_VERSION = os.environ.get("KAFKA_VERSION")
 
 if __name__ == "__main__":
     consumer = KafkaConsumer(
         TRANSACTIONS_TOPIC,
         bootstrap_servers=KAFKA_BROKER_URL,
+        api_version=KAFKA_VERSION,
         value_deserializer=lambda value: json.loads(value), # TODO https://github.com/mallory-jpg/kafka-fraud/issues/1 'no brokers available' -- api version? 
     )
     producer = KafkaProducer(
         bootstrap_servers=KAFKA_BROKER_URL,
-        api_version=(1, 3, 5),
+        api_version=KAFKA_VERSION,
         value_serializer=lambda value: json.dumps(value).encode()
     )
     for message in consumer:
