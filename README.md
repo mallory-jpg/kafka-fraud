@@ -1,5 +1,7 @@
 # Fraud Detector
 
+This program classifies transaction events as fraudulent (exceeding $900) or legit. The generator and detector run in separate Docker containers and interact with the Kafka cluster to filter and log suspicious transactions.
+
 ### To Run
 1. Build & run the Kafka container: `docker-compose -f docker-compose.kafka.yml build && docker-compose -f docker-compose.kafka.yml up`
 2. Build & run the application container that contains the generator & detector: `docker-compose build && docker-compose up`
