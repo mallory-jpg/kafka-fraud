@@ -1,0 +1,24 @@
+# docker-compose.yml
+version: "3"
+
+services:
+# TODO: generator and detector coming soon
+  generator:
+    build: ./generator
+    environment:
+      - KAFKA_BROKER_URL: broker:9092
+      - TRANSACTIONS_TOPIC: queueing.transactions
+      - TRANSACTIONS_PER_SECOND=1000 
+  detector:
+    build: ./detector
+    environment:
+      - KAFKA_BROKER_URL: broker:9092
+      - TRANSACTIONS_TOPIC: queueing.transactions
+      - LEGIT_TOPIC: streaming.transactions.legit
+      - FRAUD_TOPIC: streaming.transactions.fraud    
+
+# Give this composition access to the Kafka network
+networks:
+  default:
+    external:
+      name: kafka-network
